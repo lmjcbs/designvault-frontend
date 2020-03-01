@@ -9,7 +9,7 @@ const RegisterForm = () => {
 
   return (
     <Form>
-      <Label htmlFor="username">Email</Label>
+      <Label htmlFor="email">Email</Label>
       <Input
         type="text"
         name="email"
@@ -17,7 +17,7 @@ const RegisterForm = () => {
         {...email}
       ></Input>
       <br />
-      <Label htmlFor="username">Password</Label>
+      <Label htmlFor="password">Password</Label>
       <Input
         type="password"
         name="password"
@@ -25,7 +25,7 @@ const RegisterForm = () => {
         {...password}
       ></Input>
       <br />
-      <Label htmlFor="username">Confirm Password</Label>
+      <Label htmlFor="passwordConfirmation">Confirm Password</Label>
       <Input
         type="password"
         name="passwordConfirmation"

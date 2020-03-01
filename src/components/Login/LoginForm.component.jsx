@@ -8,18 +8,18 @@ const LoginForm = () => {
 
   return (
     <Form>
-      <Label htmlFor="username">Email</Label>
+      <Label htmlFor="email">Email</Label>
       <Input
         type="text"
         name="email"
         placeholder="Email"
         {...email}
       ></Input>
-      <Label htmlFor="username">Password</Label>
+      <Label htmlFor="password">Password</Label>
       <Input
         type="password"
-        name="email"
-        placeholder="Email"
+        name="password"
+        placeholder="Password"
         {...password}
       ></Input>
       <Input type="submit" value="Login"></Input>
