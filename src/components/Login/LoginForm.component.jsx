@@ -1,13 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Label } from '../../utils/styles/global';
 import { useFormInput } from '../../utils/hooks/useFormInput.hook';
+import { userLoginFetchAction } from '../../actions/Actions';
 
-const LoginForm = () => {
+const LoginForm = ({ userLoginFetchAction }) => {
   const email = useFormInput('');
   const password = useFormInput('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userLoginFetchAction({
+      user: { email: email.value, password: password.value }
+    });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Label htmlFor="email">Email</Label>
       <Input
         type="text"
@@ -27,4 +36,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default connect(null, { userLoginFetchAction })(LoginForm);
