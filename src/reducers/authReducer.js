@@ -1,6 +1,7 @@
 const initialState = {
   currentUser: {},
-  loading: false
+  loading: false,
+  isAuthenticated: false
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -14,11 +15,11 @@ export const authReducer = (state = initialState, action) => {
     LOGIN_USER: {
       ...state,
       currentUser: payload,
-      loading: false
+      loading: false,
+      isAuthenticated: true
     },
     LOGOUT_USER: {
-      ...state,
-      currentUser: {}
+      initialState
     }
   };
 
