@@ -1,14 +1,19 @@
 import React from 'react';
 import RegisterForm from './RegisterForm.component';
-import { MainHeader } from '../../utils/styles/global';
+import { Redirect, useLocation } from 'react-router';
+import { connect } from 'react-redux';
 
-const Register = () => {
-  return (
-    <>
-      <MainHeader>Register</MainHeader>
-      <RegisterForm></RegisterForm>
-    </>
+const Register = ({ isAuthenticated }) => {
+  const location = useLocation();
+  // redirects user to previous PrivateRoute if authenticated
+  const { from } = location.state || { from: { pathname: '/' } };
+  return isAuthenticated ? (
+    <Redirect to={{ pathname: from.pathname }} />
+  ) : (
+    <RegisterForm></RegisterForm>
   );
 };
 
-export default Register;
+export default connect(({ authReducer: { isAuthenticated } }) => ({
+  isAuthenticated
+}))(Register);

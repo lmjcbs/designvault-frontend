@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
-  // redirects user back to previous PrivateRoute after logging in
+  // redirects user to previous PrivateRoute once authenticated
   const { from } = location.state || { from: { pathname: '/' } };
   return isAuthenticated ? (
     <Redirect to={{ pathname: from.pathname }} />
