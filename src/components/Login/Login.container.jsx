@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
-
+  const { from } = location.state || { from: { pathname: '/' } };
   return isAuthenticated ? (
-    <Redirect to={{ pathname: location.state.from.pathname }} />
+    <Redirect to={{ pathname: from.pathname }} />
   ) : (
     <>
       <MainHeader>Login</MainHeader>
