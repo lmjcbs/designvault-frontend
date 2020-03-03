@@ -14,25 +14,32 @@ export const loadingUserAction = () => ({
   type: LOADING_USER
 });
 
-export const userLoginFetchAction = (userObj) => async (dispatch) => {
-  dispatch(loadingUserAction());
-  try {
-    const response = await fetch(
-      'http://localhost:3000/api/v1/users/login',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(userObj)
+export const userLoginFetchAction = (userObj) => {
+  return async (dispatch) => {
+    dispatch(loadingUserAction());
+    try {
+      const userLoginFetch = await fetch(
+        'http://localhost:3000/api/v1/users/login',
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(userObj)
+        }
+      );
+      const response = await userLoginFetch.json();
+      if (response.errors) {
+        console.log(response.errors);
+      } else {
+        dispatch(userLoginAction(response.data));
       }
-    );
-    const user = await response.json();
-    dispatch(userLoginAction(user));
-  } catch (error) {
-    throw error;
-  }
+    } catch (error) {
+      throw error;
+    }
+  };
 };
 
 export const userRegisterAction = () => ({
@@ -46,10 +53,11 @@ export const userRegisteringAction = () => ({
 export const userRegisterFetchAction = (userObj) => async (dispatch) => {
   dispatch(userRegisterAction());
   try {
-    const response = await fetch(
+    const userRegisterFetch = await fetch(
       'http://localhost:3000/api/v1/users/register',
       {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
@@ -57,11 +65,18 @@ export const userRegisterFetchAction = (userObj) => async (dispatch) => {
         body: JSON.stringify(userObj)
       }
     );
-    const user = await response.json();
-    console.log(user);
-    dispatch(userRegisterAction());
-    dispatch(userLoginAction(user));
+    const response = await userRegisterFetch.json();
+    if (response.errors) {
+      console.log(response.errors);
+    } else {
+      dispatch(userRegisterAction());
+      dispatch(userLoginAction(response.data));
+    }
   } catch (error) {
     throw error;
   }
+};
+
+export const AuthenticateUser = () => (dispatch) => {
+  return;
 };
