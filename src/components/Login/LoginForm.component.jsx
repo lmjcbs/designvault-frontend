@@ -26,6 +26,7 @@ const LoginForm = ({ userLoginFetchAction }) => {
           placeholder="Email"
           {...email}
         ></Input>
+        <br />
         <Label htmlFor="password">Password</Label>
         <Input
           type="password"
@@ -33,7 +34,11 @@ const LoginForm = ({ userLoginFetchAction }) => {
           placeholder="Password"
           {...password}
         ></Input>
+        <br />
         <Input type="submit" value="Login"></Input>
+        <br />
+        <span>Don't have an account?</span>
+        <a href="/register">Sign up</a>
       </Form>
     </>
   );
