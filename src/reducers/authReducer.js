@@ -20,6 +20,9 @@ export const authReducer = (state = initialState, action) => {
     },
     LOGOUT_USER: {
       initialState
+    },
+    AUTHENTICATE_USER: {
+      initialState
     }
   };
 

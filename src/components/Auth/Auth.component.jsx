@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { AuthenticateUser } from '../../actions/Actions';
+import { authenticateUser } from '../../actions/Actions';
 
-const Auth = ({ AuthenticateUser }) => {
+const Auth = ({ authenticateUser }) => {
   useEffect(() => {
-    AuthenticateUser();
+    authenticateUser();
   });
   return <></>;
 };
 
-export default connect(null, { AuthenticateUser })(Auth);
+export default connect(null, { authenticateUser })(Auth);
