@@ -15,3 +15,11 @@ export const NavbarWrapper = styled.div`
   width: 100%;
   background-color: lightslategrey;
 `;
+
+export const NavbarButton = styled.button`
+  width: 100px;
+  padding: 12px;
+  margin: 0 6px 6px;
+  color: white;
+  background-color: lightslategrey;
+`;

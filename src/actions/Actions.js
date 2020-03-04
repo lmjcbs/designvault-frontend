@@ -1,6 +1,8 @@
 import {
   LOADING_USER,
   LOGIN_USER,
+  AUTHENTICATE_USER,
+  LOGOUT_USER,
   REGISTERING_USER,
   REGISTER_USER
 } from './ActionTypes';
@@ -18,18 +20,15 @@ export const userLoginFetchAction = (userObj) => {
   return async (dispatch) => {
     dispatch(loadingUserAction());
     try {
-      const userLoginFetch = await fetch(
-        'http://localhost:3000/api/v1/users/login',
-        {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          },
-          body: JSON.stringify(userObj)
-        }
-      );
+      const userLoginFetch = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(userObj)
+      });
       const response = await userLoginFetch.json();
       if (response.errors) {
         console.log(response.errors);
@@ -53,18 +52,15 @@ export const userRegisteringAction = () => ({
 export const userRegisterFetchAction = (userObj) => async (dispatch) => {
   dispatch(userRegisterAction());
   try {
-    const userRegisterFetch = await fetch(
-      'http://localhost:3000/api/v1/users/register',
-      {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(userObj)
-      }
-    );
+    const userRegisterFetch = await fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(userObj)
+    });
     const response = await userRegisterFetch.json();
     if (response.errors) {
       console.log(response.errors);
@@ -77,6 +73,47 @@ export const userRegisterFetchAction = (userObj) => async (dispatch) => {
   }
 };
 
-export const AuthenticateUser = () => (dispatch) => {
-  return;
+const authenticateUserAction = () => ({
+  type: AUTHENTICATE_USER
+});
+
+export const authenticateUser = () => async (dispatch) => {
+  dispatch(authenticateUserAction());
+  try {
+    const authenticateUserFetch = await fetch(
+      'http://localhost:3000/authenticate',
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      }
+    );
+    const response = await authenticateUserFetch.json();
+    if (response.errors) {
+      console.log(response.errors);
+    } else {
+      dispatch(userLoginAction(response.data));
+    }
+  } catch (errors) {
+    throw errors;
+  }
+};
+
+export const userLogoutAction = () => async (dispatch) => {
+  dispatch({ type: LOGOUT_USER });
+  try {
+    await fetch('http://localhost:3000/logout', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    });
+  } catch (errors) {
+    throw errors;
+  }
 };

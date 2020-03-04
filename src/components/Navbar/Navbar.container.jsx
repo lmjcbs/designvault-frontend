@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { NavbarWrapper, link } from './Navbar.styles';
+import { NavbarWrapper, NavbarButton, link } from './Navbar.styles';
+import { connect } from 'react-redux';
+import { userLogoutAction } from '../../actions/Actions';
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, userLogoutAction }) => {
   return (
     <NavbarWrapper>
       <NavLink
@@ -13,32 +15,35 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/about"
-        exact
-        style={link}
-        activeStyle={{ background: 'blue' }}
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/login"
-        exact
-        style={link}
-        activeStyle={{ background: 'blue' }}
-      >
-        Login
-      </NavLink>
-      <NavLink
-        to="/register"
-        exact
-        style={link}
-        activeStyle={{ background: 'blue' }}
-      >
-        Register
-      </NavLink>
+      {isAuthenticated ? (
+        <NavbarButton onClick={userLogoutAction}>Logout</NavbarButton>
+      ) : (
+        <>
+          <NavLink
+            to="/login"
+            exact
+            style={link}
+            activeStyle={{ background: 'blue' }}
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/signup"
+            exact
+            style={link}
+            activeStyle={{ background: 'blue' }}
+          >
+            Register
+          </NavLink>
+        </>
+      )}
     </NavbarWrapper>
   );
 };
 
-export default Navbar;
+export default connect(
+  ({ authReducer: { isAuthenticated } }) => ({
+    isAuthenticated
+  }),
+  { userLogoutAction }
+)(Navbar);
