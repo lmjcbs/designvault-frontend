@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Form = styled.form``;
+export const Row = styled.div`
+  display: flex;
+`;
+
+export const Col = styled.div`
+  flex: ${(props) => props.size};
+`;
 
 export const Input = styled.input`
   font-size: 18px;
@@ -16,3 +22,5 @@ export const MainHeader = styled.h1`
   font-size: 24px;
   color: red;
 `;
+
+export const Form = styled.form``;
