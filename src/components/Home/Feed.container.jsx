@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 const Feed = () => {
   return (
     <>
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
       <FeedPost></FeedPost>
       <FeedPost></FeedPost>
       <FeedPost></FeedPost>
@@ -16,9 +13,9 @@ const Feed = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {};
-};
+// const mapStateToProps = (state) => {
+//   return {};
+// };
 
 export default connect(
   ({
