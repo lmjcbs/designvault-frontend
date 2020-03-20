@@ -11,7 +11,10 @@ const LoginForm = ({ userLoginFetchAction }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     userLoginFetchAction({
-      user: { email: email.value, password: password.value }
+      user: {
+        email: email.value,
+        password: password.value
+      }
     });
   };
 
