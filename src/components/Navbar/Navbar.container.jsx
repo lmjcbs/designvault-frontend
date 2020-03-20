@@ -19,6 +19,16 @@ const Navbar = ({ isAuthenticated, userLogoutAction }) => {
           >
             Home
           </NavLink>
+          {isAuthenticated ? (
+            <NavLink
+              to="/"
+              exact
+              style={link}
+              activeStyle={{ background: 'blue' }}
+            >
+              News
+            </NavLink>
+          ) : null}
         </Col>
         <Col size={1}>{isAuthenticated ? <SearchBar /> : null}</Col>
         <Col size={1}>
