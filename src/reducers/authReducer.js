@@ -22,7 +22,8 @@ export const authReducer = (state = initialState, action) => {
       initialState
     },
     AUTHENTICATE_USER: {
-      initialState
+      initialState,
+      loading: true
     }
   };
 
