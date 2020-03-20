@@ -6,11 +6,14 @@ export const Row = styled.div`
 
 export const Col = styled.div`
   flex: ${(props) => props.size};
+  padding: 0 10px;
 `;
 
 export const Input = styled.input`
   font-size: 18px;
   color: blue;
+  outline: none;
+  border: none;
 `;
 
 export const Label = styled.label`
