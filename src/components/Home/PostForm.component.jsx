@@ -1,23 +1,45 @@
 import React from 'react';
-import { PostInput, NewPostContainer, Header } from './Home.styles';
+import { Row, Col } from '../../utils/styles/global';
+import { connect } from 'react-redux';
+import {
+  PostInput,
+  NewPostContainer,
+  Header,
+  SubmitInput
+} from './Home.styles';
+
 import { useFormInput } from '../../utils/hooks/useFormInput.hook';
 
-const PostForm = () => {
+const PostForm = ({ attributes }) => {
   const post = useFormInput('');
-  const placeholder = `Share something with the world, name...`;
+  const { firstName } = attributes;
+  const placeholder = `Share something with the world, ${firstName}...`;
 
   return (
     <NewPostContainer>
       <Header>Create New Post</Header>
-      <PostInput
-        type="post"
-        name="email"
-        placeholder={placeholder}
-        {...post}
-      ></PostInput>
-      <input type="submit"></input>
+      <Row>
+        <Col size={1}>
+          <PostInput
+            type="post"
+            name="post"
+            placeholder={placeholder}
+            contenteditable="true"
+            {...post}
+          ></PostInput>
+        </Col>
+      </Row>
+      <SubmitInput type="submit" value="Post"></SubmitInput>
     </NewPostContainer>
   );
 };
 
-export default PostForm;
+export default connect(
+  ({
+    authReducer: {
+      currentUser: { attributes }
+    }
+  }) => ({
+    attributes
+  })
+)(PostForm);
