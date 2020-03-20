@@ -18,8 +18,8 @@ export const NavbarWrapper = styled.div`
 
 export const NavbarButton = styled.button`
   width: 100px;
-  padding: 12px;
-  margin: 0 6px 6px;
+  height: 40px;
   color: white;
-  background-color: lightslategrey;
+  background-color: lightgreen;
+  float: right;
 `;
