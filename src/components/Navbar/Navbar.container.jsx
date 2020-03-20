@@ -21,7 +21,7 @@ const Navbar = ({ isAuthenticated, userLogoutAction }) => {
           </NavLink>
           {isAuthenticated ? (
             <NavLink
-              to="/"
+              to="/news"
               exact
               style={link}
               activeStyle={{ background: 'blue' }}
