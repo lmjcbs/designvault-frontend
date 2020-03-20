@@ -3,40 +3,49 @@ import { NavLink } from 'react-router-dom';
 import { NavbarWrapper, NavbarButton, link } from './Navbar.styles';
 import { connect } from 'react-redux';
 import { userLogoutAction } from '../../actions/Actions';
+import { Row, Col } from '../../utils/styles/global';
+import SearchBar from '../Home/SearchBar.component';
 
 const Navbar = ({ isAuthenticated, userLogoutAction }) => {
   return (
     <NavbarWrapper>
-      <NavLink
-        to="/"
-        exact
-        style={link}
-        activeStyle={{ background: 'blue' }}
-      >
-        Home
-      </NavLink>
-      {isAuthenticated ? (
-        <NavbarButton onClick={userLogoutAction}>Logout</NavbarButton>
-      ) : (
-        <>
+      <Row>
+        <Col size={1}>
           <NavLink
-            to="/login"
+            to="/"
             exact
             style={link}
             activeStyle={{ background: 'blue' }}
           >
-            Login
+            Home
           </NavLink>
-          <NavLink
-            to="/signup"
-            exact
-            style={link}
-            activeStyle={{ background: 'blue' }}
-          >
-            Register
-          </NavLink>
-        </>
-      )}
+        </Col>
+        <Col size={1}>{isAuthenticated ? <SearchBar /> : null}</Col>
+        <Col size={1}>
+          {isAuthenticated ? (
+            <NavbarButton onClick={userLogoutAction}>Logout</NavbarButton>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                exact
+                style={link}
+                activeStyle={{ background: 'blue' }}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signup"
+                exact
+                style={link}
+                activeStyle={{ background: 'blue' }}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
+        </Col>
+      </Row>
     </NavbarWrapper>
   );
 };
