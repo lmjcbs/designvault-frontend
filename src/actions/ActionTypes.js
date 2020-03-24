@@ -7,3 +7,6 @@ export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 // userReducer action types
 export const REGISTERING_USER = 'REGISTERING_USER';
 export const REGISTER_USER = 'REGISTER_USER';
+
+// postReducer action types
+export const ADD_POST = 'ADD_POST';
