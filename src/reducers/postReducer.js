@@ -1,26 +1,37 @@
+const basePosts = [
+  {
+    poster: 'John',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'
+  },
+  {
+    poster: 'John',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'
+  },
+  {
+    poster: 'John',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'
+  }
+];
+
 const initialState = {
-  posts: []
+  test: 'hello',
+  posts: basePosts
 };
 
 export const postReducer = (state = initialState, action) => {
+  console.log(action);
   const { type, payload } = action;
+  console.log(payload);
   const reducer = {
-    LOADING_POSTS: {
-      ...state
-    },
     ADD_POST: {
       ...state,
-      posts: state.posts.unshift(payload)
-    },
-    REMOVE_POST: {
-      ...state
-      // posts: index of remove post, return new array
-    },
-    EDIT_POST: {
-      ...state
-      //index of edited post and amend details
+      posts: [payload, ...state.posts]
     }
   };
+  console.log(state.posts);
 
   return reducer[type] || state;
 };
