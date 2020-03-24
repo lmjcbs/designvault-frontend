@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col } from '../../utils/styles/global';
 import { connect } from 'react-redux';
+import { addPost } from '../../actions/Actions';
+
 import {
   PostInput,
   NewPostContainer,
@@ -10,10 +12,19 @@ import {
 
 import { useFormInput } from '../../utils/hooks/useFormInput.hook';
 
-const PostForm = ({ attributes }) => {
+const PostForm = ({ attributes, addPost }) => {
   const post = useFormInput('');
   const { firstName } = attributes;
   const placeholder = `Share something with the world, ${firstName}...`;
+
+  const handleOnClick = () => {
+    const data = {
+      poster: firstName,
+      content: post.value
+    };
+    console.log(data);
+    addPost(data);
+  };
 
   return (
     <NewPostContainer>
@@ -29,17 +40,15 @@ const PostForm = ({ attributes }) => {
           ></PostInput>
         </Col>
       </Row>
-      <SubmitInput type="submit" value="Post"></SubmitInput>
+      <button onClick={handleOnClick}>Post</button>
     </NewPostContainer>
   );
 };
 
-export default connect(
-  ({
-    authReducer: {
-      currentUser: { attributes }
-    }
-  }) => ({
-    attributes
-  })
-)(PostForm);
+const mapStateToProps = (state) => {
+  return {
+    attributes: state.authReducer.currentUser.attributes
+  };
+};
+
+export default connect(mapStateToProps, { addPost })(PostForm);
