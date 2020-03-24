@@ -13,7 +13,6 @@ const Home = () => {
           <ProfileBar></ProfileBar>
         </Col>
         <Col size={2}>
-          <h1>Protected Page</h1>
           <PostForm></PostForm>
           <Feed></Feed>
         </Col>
