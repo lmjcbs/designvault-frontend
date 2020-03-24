@@ -2,17 +2,16 @@ import React from 'react';
 import { Post } from './Home.styles';
 import { Row, Col } from '../../utils/styles/global';
 
-const FeedPost = () => {
-  const lorem =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.';
+const FeedPost = ({ post }) => {
+  const { poster, content } = post;
   return (
     <Post>
       <Row>
-        <Col size={1}>Post Creator</Col>
+        <Col size={1}>{poster}</Col>
       </Row>
       <hr />
       <Row>
-        <Col size={1}>{lorem}</Col>
+        <Col size={1}>{content}</Col>
       </Row>
       <hr />
       <Row>
