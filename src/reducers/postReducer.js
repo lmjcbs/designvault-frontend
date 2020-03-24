@@ -22,16 +22,13 @@ const initialState = {
 };
 
 export const postReducer = (state = initialState, action) => {
-  console.log(action);
   const { type, payload } = action;
-  console.log(payload);
   const reducer = {
     ADD_POST: {
       ...state,
       posts: [payload, ...state.posts]
     }
   };
-  console.log(state.posts);
 
   return reducer[type] || state;
 };
