@@ -1,28 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FeedPost from './FeedPost.component';
-import Button from '@material-ui/core/Button';
 
-const Feed = () => {
+const Feed = ({ posts }) => {
+  console.log(posts);
   return (
     <>
-      <FeedPost></FeedPost>
-      <FeedPost></FeedPost>
-      <FeedPost></FeedPost>
+      {posts.map((post) => (
+        <FeedPost post={post}></FeedPost>
+      ))}
     </>
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
+const mapStateToProps = (state) => {
+  return {
+    posts: state.postReducer.posts
+  };
+};
 
-export default connect(
-  ({
-    authReducer: {
-      currentUser: { attributes }
-    }
-  }) => ({
-    attributes
-  })
-)(Feed);
+export default connect(mapStateToProps)(Feed);
