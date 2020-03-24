@@ -4,7 +4,8 @@ import {
   AUTHENTICATE_USER,
   LOGOUT_USER,
   REGISTERING_USER,
-  REGISTER_USER
+  REGISTER_USER,
+  ADD_POST
 } from './ActionTypes';
 
 export const userLoginAction = (userObj) => ({
@@ -117,3 +118,8 @@ export const userLogoutAction = () => async (dispatch) => {
     throw errors;
   }
 };
+
+export const addPost = (post) => ({
+  type: ADD_POST,
+  payload: post
+});
